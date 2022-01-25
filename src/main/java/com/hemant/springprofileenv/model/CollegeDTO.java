@@ -17,9 +17,11 @@ public class CollegeDTO {
     private String location;
 
     public static List<CollegeDTO> mapToCollege(List<College> colleges) {
-       return colleges.stream().map(college ->
-                CollegeDTO.builder().city(college.getCity()).id(college.getId()).name(college.getName())
-                        .state(college.getState()).location(college.getLocation()).build())
-               .collect(Collectors.toList());
+        return colleges.stream().map(CollegeDTO::getCollegeDTO).collect(Collectors.toList());
+
+    }
+    private static CollegeDTO getCollegeDTO(College college) {
+        return CollegeDTO.builder().city(college.getCity()).id(college.getId()).name(college.getName())
+                .state(college.getState()).location(college.getLocation()).build();
     }
 }
